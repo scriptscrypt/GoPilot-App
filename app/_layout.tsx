@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
@@ -8,15 +8,23 @@ import {
 } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Topbar from "@/components/Topbar";
+import { useFocusEffect } from "@react-navigation/native";
+import { useNavigation } from "expo-router";
 
 export default function Layout() {
   const [isModalVisible, setModalVisible] = useState(false);
-
+  const navigation = useNavigation();
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
   const insets = useSafeAreaInsets();
+
+  const handleNewProposal = () => {
+    // @ts-ignore: Expo Router's types might not be up to datex
+    setModalVisible(true);
+  };
 
   const CustomDrawerContent = (props: any) => {
     return (
@@ -37,7 +45,7 @@ export default function Layout() {
             styles.newProposalButton,
             { marginBottom: 16 + insets.bottom },
           ]}
-          onPress={toggleModal}
+          onPress={handleNewProposal}
         >
           <Text style={styles.buttonText}>New Proposal</Text>
         </TouchableOpacity>
