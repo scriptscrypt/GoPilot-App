@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
@@ -13,10 +13,15 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { BuildType, OktoProvider } from "okto-sdk-react-native";
 import { OKTO_CLIENT_API } from "@/constants/keys";
+import { BlurView } from "expo-blur";
+import { DrawerActions } from '@react-navigation/native';
 
 export default function Layout() {
   const [isModalVisible, setModalVisible] = useState(false);
+  const [shouldOpenModal, setShouldOpenModal] = useState(false);
   const navigation = useNavigation();
+  const drawerRef = useRef(null);
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -24,10 +29,20 @@ export default function Layout() {
   const insets = useSafeAreaInsets();
 
   const handleNewProposal = () => {
-    // @ts-ignore: Expo Router's types might not be up to datex
-    setModalVisible(true);
+    setShouldOpenModal(true);
+    // @ts-ignore: Expo Router's types might not be up to date
+    // navigation.closeDrawer();
+    navigation.dispatch(DrawerActions.closeDrawer());
   };
 
+  useFocusEffect(
+    useCallback(() => {
+      if (shouldOpenModal) {
+        setModalVisible(true);
+        setShouldOpenModal(false);
+      }
+    }, [shouldOpenModal])
+  );
   const CustomDrawerContent = (props: any) => {
     return (
       <>
@@ -64,113 +79,116 @@ export default function Layout() {
       }}
     >
       {/* <OktoProvider apiKey={OKTO_CLIENT_API} buildType={BuildType.SANDBOX}> */}
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <Drawer
-            drawerContent={(props) => <CustomDrawerContent {...props} />}
-            screenOptions={{
-              headerShown: false,
-              drawerActiveBackgroundColor: "#e6e6e6",
-              drawerActiveTintColor: "#000",
-              drawerInactiveTintColor: "#333",
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Drawer
+          drawerContent={(props) => <CustomDrawerContent {...props} />}
+          screenOptions={{
+            headerShown: false,
+            drawerActiveBackgroundColor: "#e6e6e6",
+            drawerActiveTintColor: "#000",
+            drawerInactiveTintColor: "#333",
+          }}
+        >
+          <Drawer.Screen
+            name="index"
+            options={{
+              drawerLabel: "Recent Rides",
+              title: "Recent Rides",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="time-outline" size={size} color={color} />
+              ),
             }}
-          >
-            <Drawer.Screen
-              name="index"
-              options={{
-                drawerLabel: "Recent Rides",
-                title: "Recent Rides",
-                drawerIcon: ({ color, size }) => (
-                  <Ionicons name="time-outline" size={size} color={color} />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="earningsScreen"
-              options={{
-                drawerLabel: "Earnings",
-                title: "Earnings",
-                drawerIcon: ({ color, size }) => (
-                  <Ionicons name="star-outline" size={size} color={color} />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="notificationsScreen"
-              options={{
-                drawerLabel: "Notifications",
-                title: "Notifications",
-                drawerIcon: ({ color, size }) => (
-                  <Ionicons
-                    name="notifications-outline"
-                    size={size}
-                    color={color}
-                  />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="voteScreen"
-              options={{
-                drawerLabel: "Vote",
-                title: "Vote",
-                drawerIcon: ({ color, size }) => (
-                  <Ionicons name="checkbox-outline" size={size} color={color} />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="stakeScreen"
-              options={{
-                drawerLabel: "Stake $NMT",
-                title: "Stake $NMT",
-                drawerIcon: ({ color, size }) => (
-                  <Ionicons name="cash-outline" size={size} color={color} />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="accountSettingsScreen"
-              options={{
-                drawerLabel: "Account Settings",
-                title: "Account Settings",
-                drawerIcon: ({ color, size }) => (
-                  <Ionicons name="settings-outline" size={size} color={color} />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="helpFeedbackScreen"
-              options={{
-                drawerLabel: "Help & feedback",
-                title: "Help & feedback",
-                drawerIcon: ({ color, size }) => (
-                  <Ionicons
-                    name="help-circle-outline"
-                    size={size}
-                    color={color}
-                  />
-                ),
-              }}
-            />
-          </Drawer>
+          />
+          <Drawer.Screen
+            name="earningsScreen"
+            options={{
+              drawerLabel: "Earnings",
+              title: "Earnings",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="star-outline" size={size} color={color} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="notificationsScreen"
+            options={{
+              drawerLabel: "Notifications",
+              title: "Notifications",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons
+                  name="notifications-outline"
+                  size={size}
+                  color={color}
+                />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="voteScreen"
+            options={{
+              drawerLabel: "Vote",
+              title: "Vote",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="checkbox-outline" size={size} color={color} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="stakeScreen"
+            options={{
+              drawerLabel: "Stake $NMT",
+              title: "Stake $NMT",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="cash-outline" size={size} color={color} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="accountSettingsScreen"
+            options={{
+              drawerLabel: "Account Settings",
+              title: "Account Settings",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="settings-outline" size={size} color={color} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="helpFeedbackScreen"
+            options={{
+              drawerLabel: "Help & feedback",
+              title: "Help & feedback",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons
+                  name="help-circle-outline"
+                  size={size}
+                  color={color}
+                />
+              ),
+            }}
+          />
+        </Drawer>
 
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={isModalVisible}
-            onRequestClose={toggleModal}
-          >
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={isModalVisible}
+          onRequestClose={toggleModal}
+        >
+          <BlurView intensity={10} style={StyleSheet.absoluteFill}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>New Proposal</Text>
               <TouchableOpacity
-                style={styles.closeButton}
+                style={styles.closeIconButton}
                 onPress={toggleModal}
               >
-                <Text style={styles.textStyle}>Close</Text>
+                <Ionicons name="close" size={24} color="#333" />
               </TouchableOpacity>
+              <Text style={styles.modalText}>New Proposal</Text>
+              {/* Add your new proposal form or content here */}
             </View>
-          </Modal>
-        </GestureHandlerRootView>
+          </BlurView>
+        </Modal>
+      </GestureHandlerRootView>
       {/* </OktoProvider> */}
     </View>
   );
@@ -238,5 +256,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
+  },
+  closeIconButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    padding: 10,
   },
 });
