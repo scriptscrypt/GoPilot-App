@@ -1,12 +1,33 @@
-import { StyleSheet, Text, View, Pressable, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  SafeAreaView,
+  Button,
+} from "react-native";
 import React from "react";
 import Topbar from "@/components/Topbar";
 import MapLayout from "@/components/MapLayout";
+import {
+  BuildType,
+  OktoProvider,
+  useOkto,
+  type OktoContextType,
+} from "okto-sdk-react-native";
 
 const index = () => {
+  // const { showWidgetSheet, closeBottomSheet } = useOkto() as OktoContextType;
+
+  // const openSheet = () => {
+  //   showWidgetSheet();
+  // };
   return (
     <View>
       <Topbar balance={0} />
+      {/* <Pressable>
+        <Button onPress={openSheet} title="Login" />
+      </Pressable> */}
       <MapLayout />
       <Text>index</Text>
       <ReclaimSDK />
@@ -19,27 +40,28 @@ export default index;
 const styles = StyleSheet.create({});
 
 import { Reclaim } from "@reclaimprotocol/reactnative-sdk";
+import {
+  APP_DEEP_LINK,
+  RECLAIM_APP_ID,
+  RECLAIM_APP_SECRET,
+  RECLAIM_PROVIDER_ID,
+} from "@/constants/keys";
 export const ReclaimSDK = () => {
-  const APP_ID = "0xd620F4BE441bACA3bDCB5c02c1cA741da62D447c";
-  const APP_SECRET = "0xd620F4BE441bACA3bDCB5c02c1cA741da62D447c";
-  const reclaimClient = new Reclaim.ProofRequest(APP_ID);
+  const reclaimClient = new Reclaim.ProofRequest(RECLAIM_APP_ID);
 
   async function startVerificationFlow() {
-    const providerId = "9536778f-25f8-4d3b-b86f-b3d82187a999"; //TODO: replace with your provider id you had selected while creating the application
-
-    const appDeepLink = "YOUR_APP_DEEP_LINK_HERE"; //TODO: replace with your app deep link
-    reclaimClient.setAppCallbackUrl(appDeepLink);
+    reclaimClient.setAppCallbackUrl(APP_DEEP_LINK);
 
     await reclaimClient.addContext(
       `user's address`,
       "for acmecorp.com on 1st january"
     );
 
-    await reclaimClient.buildProofRequest(providerId);
+    await reclaimClient.buildProofRequest(RECLAIM_PROVIDER_ID);
 
     reclaimClient.setSignature(
       await reclaimClient.generateSignature(
-        APP_SECRET //TODO : replace with your APP_SECRET
+        RECLAIM_APP_SECRET //TODO : replace with your RECLAIM_APP_SECRET
       )
     );
 
@@ -60,9 +82,9 @@ export const ReclaimSDK = () => {
 
   return (
     <SafeAreaView>
-      <View>
+      <View style={{ padding: 16 }}>
         <Pressable onPress={startVerificationFlow}>
-          <Text>Start Verification Flow</Text>
+          <Button title="Fetch Uber details" />
         </Pressable>
       </View>
     </SafeAreaView>

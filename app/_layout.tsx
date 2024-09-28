@@ -11,6 +11,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Topbar from "@/components/Topbar";
 import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
+import { BuildType, OktoProvider } from "okto-sdk-react-native";
+import { OKTO_CLIENT_API } from "@/constants/keys";
 
 export default function Layout() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -61,110 +63,115 @@ export default function Layout() {
         paddingBottom: insets.bottom,
       }}
     >
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <Drawer
-          drawerContent={(props) => <CustomDrawerContent {...props} />}
-          screenOptions={{
-            headerShown: false,
-            drawerActiveBackgroundColor: "#e6e6e6",
-            drawerActiveTintColor: "#000",
-            drawerInactiveTintColor: "#333",
-          }}
-        >
-          <Drawer.Screen
-            name="index"
-            options={{
-              drawerLabel: "Recent Rides",
-              title: "Recent Rides",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="time-outline" size={size} color={color} />
-              ),
+      {/* <OktoProvider apiKey={OKTO_CLIENT_API} buildType={BuildType.SANDBOX}> */}
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Drawer
+            drawerContent={(props) => <CustomDrawerContent {...props} />}
+            screenOptions={{
+              headerShown: false,
+              drawerActiveBackgroundColor: "#e6e6e6",
+              drawerActiveTintColor: "#000",
+              drawerInactiveTintColor: "#333",
             }}
-          />
-          <Drawer.Screen
-            name="earningsScreen"
-            options={{
-              drawerLabel: "Earnings",
-              title: "Earnings",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="star-outline" size={size} color={color} />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="notificationsScreen"
-            options={{
-              drawerLabel: "Notifications",
-              title: "Notifications",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons
-                  name="notifications-outline"
-                  size={size}
-                  color={color}
-                />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="voteScreen"
-            options={{
-              drawerLabel: "Vote",
-              title: "Vote",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="checkbox-outline" size={size} color={color} />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="stakeScreen"
-            options={{
-              drawerLabel: "Stake $NMT",
-              title: "Stake $NMT",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="cash-outline" size={size} color={color} />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="accountSettingsScreen"
-            options={{
-              drawerLabel: "Account Settings",
-              title: "Account Settings",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="settings-outline" size={size} color={color} />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="helpFeedbackScreen"
-            options={{
-              drawerLabel: "Help & feedback",
-              title: "Help & feedback",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons
-                  name="help-circle-outline"
-                  size={size}
-                  color={color}
-                />
-              ),
-            }}
-          />
-        </Drawer>
+          >
+            <Drawer.Screen
+              name="index"
+              options={{
+                drawerLabel: "Recent Rides",
+                title: "Recent Rides",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="time-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="earningsScreen"
+              options={{
+                drawerLabel: "Earnings",
+                title: "Earnings",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="star-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="notificationsScreen"
+              options={{
+                drawerLabel: "Notifications",
+                title: "Notifications",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons
+                    name="notifications-outline"
+                    size={size}
+                    color={color}
+                  />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="voteScreen"
+              options={{
+                drawerLabel: "Vote",
+                title: "Vote",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="checkbox-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="stakeScreen"
+              options={{
+                drawerLabel: "Stake $NMT",
+                title: "Stake $NMT",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="cash-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="accountSettingsScreen"
+              options={{
+                drawerLabel: "Account Settings",
+                title: "Account Settings",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="settings-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="helpFeedbackScreen"
+              options={{
+                drawerLabel: "Help & feedback",
+                title: "Help & feedback",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons
+                    name="help-circle-outline"
+                    size={size}
+                    color={color}
+                  />
+                ),
+              }}
+            />
+          </Drawer>
 
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={isModalVisible}
-          onRequestClose={toggleModal}
-        >
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>New Proposal</Text>
-            <TouchableOpacity style={styles.closeButton} onPress={toggleModal}>
-              <Text style={styles.textStyle}>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
-      </GestureHandlerRootView>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={isModalVisible}
+            onRequestClose={toggleModal}
+          >
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>New Proposal</Text>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={toggleModal}
+              >
+                <Text style={styles.textStyle}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+        </GestureHandlerRootView>
+      {/* </OktoProvider> */}
     </View>
   );
 }
