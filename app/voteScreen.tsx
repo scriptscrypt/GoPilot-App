@@ -8,10 +8,17 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { ResizeMode, Video } from 'expo-av';
 
 const VoteScreen = () => {
   const navigation = useNavigation();
   const [activeTab, setActiveTab] = useState("Live");
+  const [videoError, setVideoError] = useState(null);
+
+  const handleVideoError = (error: any) => {
+    console.error("Video Error:", error);
+    setVideoError(error);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -56,11 +63,20 @@ const VoteScreen = () => {
           <Text style={styles.proposalTitle}>
             Introduce Driver Levels with Perks
           </Text>
-          <Text style={styles.proposalDescription}>
-            Create a tiered system for drivers (Bronze, Silver, Gold, Platinum)
-            based on ride completions and ratings, with increasing perks at each
-            level.
-          </Text>
+
+          <View style={styles.videoContainer}>
+            <Video
+              source={{ uri: 'https://ik.imagekit.io/quackmagic/nimmatoken/FigmaBlinks.mp4?updatedAt=1727678605375' }}
+              style={styles.video}
+              useNativeControls
+              resizeMode={ResizeMode.CONTAIN}
+              isLooping
+              onError={handleVideoError}
+            />
+            {videoError && (
+              <Text style={styles.errorText}>Error loading video: {videoError}</Text>
+            )}
+          </View>
 
           <Text style={styles.questionText}>Do you agree?</Text>
 
@@ -105,7 +121,6 @@ const VoteScreen = () => {
     </SafeAreaView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -261,6 +276,25 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: "#007AFF",
   },
+  video: {
+    width: '100%',
+    height: "80%",
+    marginBottom: 16,
+  },
+
+  videoContainer: {
+    width: '100%',
+    height: 200,
+    backgroundColor: '#e0e0e0',  // Light grey background to see the container
+    marginBottom: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorText: {
+    color: 'red',
+    textAlign: 'center',
+  },
+
 });
 
 export default VoteScreen;
