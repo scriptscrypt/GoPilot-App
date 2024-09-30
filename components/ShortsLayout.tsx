@@ -6,25 +6,36 @@ import {
     StyleSheet,
     TouchableOpacity,
     Text,
+    Pressable,
 } from 'react-native';
 import { ResizeMode, Video } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get('window');
 
-const ShortVideo = ({ item, isActive }: any) => {
-    const videoRef = useRef(null);
+const ShortVideo = ({ item, isActive }: { item: any; isActive: boolean }) => {
+    const videoRef = useRef<any>();
+    const [status, setStatus] = useState<any>({});
 
     React.useEffect(() => {
         if (isActive) {
-            videoRef.current?.playAsync?.();
+            videoRef.current.playAsync();
         } else {
-            videoRef.current?.pauseAsync?.();
+            videoRef.current.pauseAsync();
         }
     }, [isActive]);
 
+    const handleVideoPress = async () => {
+        if (status.isPlaying) {
+            await videoRef.current.pauseAsync();
+        } else {
+            await videoRef.current.playAsync();
+        }
+    };
+
     return (
-        <View style={styles.videoContainer}>
+        <Pressable style={styles.videoContainer} onPress={handleVideoPress}>
             <Video
                 ref={videoRef}
                 source={{ uri: item.videoUri }}
@@ -32,25 +43,42 @@ const ShortVideo = ({ item, isActive }: any) => {
                 resizeMode={ResizeMode.COVER}
                 isLooping
                 shouldPlay={isActive}
+                onPlaybackStatusUpdate={status => setStatus(() => status)}
+            />
+            <LinearGradient
+                colors={['transparent', 'rgba(0,0,0,0.8)']}
+                style={styles.gradient}
             />
             <View style={styles.overlay}>
-                <Text style={styles.title}>{item.title}</Text>
-                <View style={styles.actions}>
-                    <TouchableOpacity style={styles.actionButton}>
-                        <Ionicons name="heart" size={28} color="white" />
-                        <Text style={styles.actionText}>{item.likes}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.actionButton}>
-                        <Ionicons name="chatbubble" size={28} color="white" />
-                        <Text style={styles.actionText}>{item.comments}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.actionButton}>
-                        <Ionicons name="share-social" size={28} color="white" />
-                        <Text style={styles.actionText}>Share</Text>
-                    </TouchableOpacity>
+                <View style={styles.topOverlay}>
+                    {status.isPlaying ? (
+                        <Ionicons name="play" size={40} color="white" style={styles.playIcon} />
+                    ) : (
+                        <Ionicons name="pause" size={40} color="white" style={styles.playIcon} />
+                    )}
+                </View>
+                <View style={styles.bottomOverlay}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.title}>{item.title}</Text>
+                        <Text style={styles.description}>{item.description}</Text>
+                    </View>
+                    <View style={styles.actions}>
+                        <TouchableOpacity style={styles.actionButton}>
+                            <Ionicons name="thumbs-up" size={28} color="white" />
+                            <Text style={styles.actionText}>{item.likes}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.actionButton}>
+                            <Ionicons name="thumbs-down" size={28} color="white" />
+                            <Text style={styles.actionText}>{item.comments}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.actionButton}>
+                            <Ionicons name="share-social" size={28} color="white" />
+                            <Text style={styles.actionText}>Share</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-        </View>
+        </Pressable>
     );
 };
 
@@ -59,12 +87,10 @@ const ShortsLayout = () => {
     const flatListRef = useRef(null);
 
     const videos = [
-        {
-            id: '1', title: '@Ramesha Proposal', videoUri: 'https://ik.imagekit.io/quackmagic/nimmatoken/FigmaBlinks.mp4?updatedAt=1727678605375', likes: '10K', comments: '1.2K'
-        },
-        { id: '2', title: 'Funny Cat', videoUri: 'https://example.com/video2.mp4', likes: '15K', comments: '2.5K' },
-        { id: '3', title: 'Magic Trick', videoUri: 'https://example.com/video3.mp4', likes: '8K', comments: '800' },
-        // Add more video objects as needed
+        { id: '1', title: 'Cool Dance', description: 'Check out these amazing moves!', videoUri: 'https://ik.imagekit.io/quackmagic/nimmatoken/FigmaBlinks.mp4?updatedAt=1727678605375', likes: '10K', comments: '1.2K' },
+        { id: '2', title: 'Funny Cat', description: 'This cat is hilarious!', videoUri: 'https://example.com/video2.mp4', likes: '15K', comments: '2.5K' },
+        { id: '3', title: 'Magic Trick', description: 'You wont believe your eyes!', videoUri: 'https://example.com/video3.mp4', likes: '8K', comments: '800' },
+
     ];
 
     const onViewableItemsChanged = useRef(({ changed }: any) => {
@@ -89,7 +115,7 @@ const ShortsLayout = () => {
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 pagingEnabled
-                vertical
+                // vertical
                 showsVerticalScrollIndicator={false}
                 onViewableItemsChanged={onViewableItemsChanged}
                 viewabilityConfig={viewabilityConfig}
@@ -110,31 +136,63 @@ const styles = StyleSheet.create({
     video: {
         flex: 1,
     },
+    gradient: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: '50%',
+    },
     overlay: {
         ...StyleSheet.absoluteFillObject,
         justifyContent: 'space-between',
+    },
+    topOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    playIcon: {
+        opacity: 0.7,
+    },
+    bottomOverlay: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
         padding: 20,
+    },
+    textContainer: {
+        flex: 1,
+        marginRight: 20,
     },
     title: {
         color: 'white',
         fontSize: 18,
-        borderColor: "blue",
         fontWeight: 'bold',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: { width: -1, height: 1 },
         textShadowRadius: 10,
     },
+    description: {
+        color: 'white',
+        fontSize: 14,
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: { width: -1, height: 1 },
+        textShadowRadius: 10,
+    },
     actions: {
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     actionButton: {
-        color: 'white',
         alignItems: 'center',
         marginBottom: 20,
     },
     actionText: {
         color: 'white',
         marginTop: 5,
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: { width: -1, height: 1 },
+        textShadowRadius: 10,
     },
 });
 
