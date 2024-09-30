@@ -184,7 +184,7 @@ export default function Layout() {
                 <Ionicons name="close" size={24} color="#333" />
               </TouchableOpacity>
               <Text style={styles.modalText}>New Proposal</Text>
-              {/* Add your new proposal form or content here */}
+              
             </View>
           </BlurView>
         </Modal>

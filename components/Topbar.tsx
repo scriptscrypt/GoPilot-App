@@ -18,7 +18,8 @@ const Topbar: React.FC<TopbarProps> = ({ balance }) => {
   };
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+
+    <View style={[styles.container]}>
       <TouchableOpacity onPress={openDrawer} style={styles.iconContainer}>
         <Ionicons name="menu-outline" size={24} color="black" />
       </TouchableOpacity>
@@ -28,6 +29,7 @@ const Topbar: React.FC<TopbarProps> = ({ balance }) => {
       <TouchableOpacity style={styles.iconContainer}>
         <Ionicons name="notifications-outline" size={24} color="black" />
       </TouchableOpacity>
+
     </View>
   );
 };
@@ -37,9 +39,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#4285F4",
     paddingHorizontal: 16,
-    paddingBottom: 12,
+    paddingVertical: 12,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
