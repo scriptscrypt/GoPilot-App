@@ -124,7 +124,7 @@ export default function Layout() {
             }}
           />
           <Drawer.Screen
-            name="voteScreen"
+            name="newVotesScreen"
             options={{
               drawerLabel: "Vote",
               title: "Vote",
