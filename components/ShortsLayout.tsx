@@ -87,7 +87,7 @@ const ShortsLayout = () => {
     const flatListRef = useRef(null);
 
     const videos = [
-        { id: '1', title: 'Cool Dance', description: 'Check out these amazing moves!', videoUri: 'https://ik.imagekit.io/quackmagic/nimmatoken/FigmaBlinks.mp4?updatedAt=1727678605375', likes: '10K', comments: '1.2K' },
+        { id: '1', title: 'Cancellation fee increase Proposal', description: 'To avoid frequent cancellations, this proposal proposes to increase the cancellation fees to Rs.30 if a user cancels it for more than twice in a day', videoUri: 'https://ik.imagekit.io/quackmagic/nimmatoken/FigmaBlinks.mp4?updatedAt=1727678605375', likes: '10K', comments: '1.2K' },
         { id: '2', title: 'Funny Cat', description: 'This cat is hilarious!', videoUri: 'https://example.com/video2.mp4', likes: '15K', comments: '2.5K' },
         { id: '3', title: 'Magic Trick', description: 'You wont believe your eyes!', videoUri: 'https://example.com/video3.mp4', likes: '8K', comments: '800' },
 

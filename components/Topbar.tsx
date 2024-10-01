@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import { Colors } from "@/constants/Colors";
 
 interface TopbarProps {
   balance: number;
@@ -21,13 +22,13 @@ const Topbar: React.FC<TopbarProps> = ({ balance }) => {
 
     <View style={[styles.container]}>
       <TouchableOpacity onPress={openDrawer} style={styles.iconContainer}>
-        <Ionicons name="menu-outline" size={24} color="black" />
+        <Ionicons name="menu-outline" size={24} color="white" />
       </TouchableOpacity>
       <View style={styles.balanceContainer}>
-        <Text style={styles.balanceText}>{balance} $NMT</Text>
+        <Text style={styles.balanceText}>{balance} $GO</Text>
       </View>
       <TouchableOpacity style={styles.iconContainer}>
-        <Ionicons name="notifications-outline" size={24} color="black" />
+        <Ionicons name="notifications-outline" size={24} color="white" />
       </TouchableOpacity>
 
     </View>
@@ -39,14 +40,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#4285F4",
+    // backgroundColor: "#fff",
     paddingHorizontal: 16,
     paddingVertical: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    // shadowColor: "#000",
+    // shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    elevation: 3,
+    // elevation: 4,
   },
   iconContainer: {
     width: 40,
@@ -54,18 +55,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 20,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: Colors.brand.primary,
   },
   balanceContainer: {
-    backgroundColor: "#F0F0F0",
+    backgroundColor: Colors.brand.primary,
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 20,
   },
   balanceText: {
+    color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
-    color: "#333",
   },
 });
 

@@ -40,7 +40,7 @@ const EarningsScreen = () => {
           <Text style={styles.dateRange}>Jun 19 - Jun 25</Text>
           <View style={styles.earningsRow}>
             <Text style={styles.earningsAmount}>₹ 21,44,988</Text>
-            <Text style={styles.tokenAmount}>40 $NMT</Text>
+            <Text style={styles.tokenAmount}>40 $GO</Text>
           </View>
           <View style={styles.statsRow}>
             <View style={styles.statItem}>

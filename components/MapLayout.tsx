@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   currentLocationButton: {
     position: 'absolute',
-    top: 20,
+    bottom: 120,
     right: 20,
     backgroundColor: 'white',
     padding: 10,

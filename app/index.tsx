@@ -20,6 +20,7 @@ import {
   RECLAIM_APP_SECRET,
   RECLAIM_PROVIDER_ID,
 } from "@/constants/keys";
+import { Colors } from "@/constants/Colors";
 
 const Index = () => {
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
@@ -77,9 +78,9 @@ const Index = () => {
 
   return (
     <View style={styles.container}>
-      <Topbar balance={0} />
+      <Topbar balance={111111} />
       <MapLayout />
-      <Text>index</Text>
+     
       <ReclaimSDK />
 
       {/* Floating Button */}
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     bottom: 20,
-    backgroundColor: '#007AFF',
+    backgroundColor: Colors.brand.primary,
     borderRadius: 30,
     width: 60,
     height: 60,

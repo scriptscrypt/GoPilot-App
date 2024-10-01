@@ -57,7 +57,7 @@ export default function Layout() {
           </View>
           <DrawerItemList {...props} />
         </DrawerContentScrollView>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={[
             styles.newProposalButton,
             { marginBottom: 16 + insets.bottom },
@@ -65,7 +65,15 @@ export default function Layout() {
           onPress={handleNewProposal}
         >
           <Text style={styles.buttonText}>New Proposal</Text>
+        </TouchableOpacity> */}
+
+        <TouchableOpacity>
+          <View style={styles.LogoutBtn}>
+            {/* <Ionicons name="log-out" size={24} color={"red"} /> */}
+            <Text style={styles.Logout}>Logout</Text>
+          </View>
         </TouchableOpacity>
+
       </>
     );
   };
@@ -134,10 +142,20 @@ export default function Layout() {
             }}
           />
           <Drawer.Screen
+            name="voteScreen"
+            options={{
+              drawerLabel: "Voting Stats",
+              title: "Vote",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="stats-chart-outline" size={size} color={color} />
+              ),
+            }}
+          />
+          <Drawer.Screen
             name="stakeScreen"
             options={{
-              drawerLabel: "Stake $NMT",
-              title: "Stake $NMT",
+              drawerLabel: "Stake $GO",
+              title: "Stake $GO",
               drawerIcon: ({ color, size }) => (
                 <Ionicons name="cash-outline" size={size} color={color} />
               ),
@@ -153,7 +171,7 @@ export default function Layout() {
               ),
             }}
           />
-          <Drawer.Screen
+          {/* <Drawer.Screen
             name="helpFeedbackScreen"
             options={{
               drawerLabel: "Help & feedback",
@@ -166,9 +184,9 @@ export default function Layout() {
                 />
               ),
             }}
-          />
+          /> */}
         </Drawer>
-
+        {/* 
         <Modal
           animationType="fade"
           transparent={true}
@@ -187,7 +205,7 @@ export default function Layout() {
               
             </View>
           </BlurView>
-        </Modal>
+        </Modal> */}
       </GestureHandlerRootView>
       {/* </OktoProvider> */}
     </View>
@@ -263,4 +281,15 @@ const styles = StyleSheet.create({
     right: 10,
     padding: 10,
   },
+  Logout: {
+    color: "red",
+    fontSize: 16
+  },
+  LogoutBtn: {
+    display: "flex",
+    direction: "ltr",
+    justifyContent: "space-between",
+    padding: 16,
+    marginBottom: 32
+  }
 });
