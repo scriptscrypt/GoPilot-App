@@ -100,10 +100,10 @@ export default function Layout() {
           <Drawer.Screen
             name="index"
             options={{
-              drawerLabel: "Recent Rides",
-              title: "Recent Rides",
+              drawerLabel: "Home",
+              title: "Home",
               drawerIcon: ({ color, size }) => (
-                <Ionicons name="time-outline" size={size} color={color} />
+                <Ionicons name="home-outline" size={size} color={color} />
               ),
             }}
           />

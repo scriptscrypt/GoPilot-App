@@ -21,6 +21,7 @@ import {
   RECLAIM_PROVIDER_ID,
 } from "@/constants/keys";
 import { Colors } from "@/constants/Colors";
+import VideoUploadComp from "@/components/VideoUploadComp";
 
 const Index = () => {
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
@@ -54,11 +55,12 @@ const Index = () => {
   const renderBottomSheetContent = () => {
     if (currentStep === 1) {
       return (
-        <View style={styles.bottomSheetContent}>
-          <Text style={styles.bottomSheetTitle}>Upload a Video</Text>
-          <Button title="Upload Video" onPress={handleUploadVideo} />
-          {videoUploaded && <Text style={styles.successText}>Video uploaded successfully!</Text>}
-        </View>
+        // <View style={styles.bottomSheetContent}>
+        //   <Text style={styles.bottomSheetTitle}>Upload a Video</Text>
+        //   <Button title="Upload Video" onPress={handleUploadVideo} />
+        //   {videoUploaded && <Text style={styles.successText}>Video uploaded successfully!</Text>}
+        // </View>
+        <VideoUploadComp />
       );
     } else {
       return (
@@ -80,7 +82,7 @@ const Index = () => {
     <View style={styles.container}>
       <Topbar balance={111111} />
       <MapLayout />
-     
+
       <ReclaimSDK />
 
       {/* Floating Button */}

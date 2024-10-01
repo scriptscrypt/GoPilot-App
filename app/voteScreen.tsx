@@ -9,6 +9,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ResizeMode, Video } from 'expo-av';
+import { Colors } from "@/constants/Colors";
 
 const VoteScreen = () => {
   const navigation = useNavigation();
@@ -148,13 +149,13 @@ const styles = StyleSheet.create({
   },
   activeTab: {
     borderBottomWidth: 2,
-    borderBottomColor: "#007AFF",
+    borderBottomColor: Colors.brand.primary,
   },
   tabText: {
     color: "#666",
   },
   activeTabText: {
-    color: "#007AFF",
+    color: Colors.brand.primary,
     fontWeight: "bold",
   },
   proposalCard: {
@@ -210,7 +211,7 @@ const styles = StyleSheet.create({
   },
   voteButton: {
     width: "48%",
-    backgroundColor: "#007AFF",
+    backgroundColor: Colors.brand.primary,
     paddingVertical: 12,
     paddingHorizontal: 48,
     borderRadius: 8,
@@ -220,7 +221,7 @@ const styles = StyleSheet.create({
   },
   noButton: {
     width: "48%",
-    backgroundColor: "#007AFF",
+    backgroundColor: Colors.brand.primary,
   },
   voteButtonText: {
     color: "white",
@@ -251,7 +252,7 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     height: "100%",
-    backgroundColor: "#007AFF",
+    backgroundColor: Colors.brand.primary,
   },
   quorumContainer: {
     backgroundColor: "#F0F0F0",
@@ -274,7 +275,7 @@ const styles = StyleSheet.create({
   },
   quorumProgressFill: {
     height: "100%",
-    backgroundColor: "#007AFF",
+    backgroundColor: Colors.brand.primary,
   },
   video: {
     width: '100%',
