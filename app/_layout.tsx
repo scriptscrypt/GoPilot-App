@@ -1,3 +1,4 @@
+import "../shim.mjs";
 import React, { useCallback, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
