@@ -37,10 +37,7 @@
                 "pathPrefix": "/.well-known/assetlinks.json"
               }
             ],
-            "category": [
-              "BROWSABLE",
-              "DEFAULT"
-            ]
+            "category": ["BROWSABLE", "DEFAULT"]
           }
         ]
       },
@@ -59,10 +56,7 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": [
-      "expo-router",
-      "expo-location"
-    ],
+    "plugins": ["expo-router", "expo-location"],
     "experiments": {
       "typedRoutes": true
     }

@@ -14,7 +14,9 @@ import { useNavigation } from "expo-router";
 import { BuildType, OktoProvider } from "okto-sdk-react-native";
 import { OKTO_CLIENT_API } from "@/constants/keys";
 import { BlurView } from "expo-blur";
-import { DrawerActions } from '@react-navigation/native';
+import { DrawerActions } from "@react-navigation/native";
+import PolyfillCrypto from "react-native-webview-crypto";
+import Login from "@/components/Screens/Login";
 
 export default function Layout() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -73,7 +75,6 @@ export default function Layout() {
             <Text style={styles.Logout}>Logout</Text>
           </View>
         </TouchableOpacity>
-
       </>
     );
   };
@@ -86,7 +87,9 @@ export default function Layout() {
         paddingBottom: insets.bottom,
       }}
     >
-      {/* <OktoProvider apiKey={OKTO_CLIENT_API} buildType={BuildType.SANDBOX}> */}
+      <PolyfillCrypto />
+      <Login />
+      {/* 
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Drawer
           drawerContent={(props) => <CustomDrawerContent {...props} />}
@@ -171,43 +174,8 @@ export default function Layout() {
               ),
             }}
           />
-          {/* <Drawer.Screen
-            name="helpFeedbackScreen"
-            options={{
-              drawerLabel: "Help & feedback",
-              title: "Help & feedback",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons
-                  name="help-circle-outline"
-                  size={size}
-                  color={color}
-                />
-              ),
-            }}
-          /> */}
         </Drawer>
-        {/* 
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={isModalVisible}
-          onRequestClose={toggleModal}
-        >
-          <BlurView intensity={10} style={StyleSheet.absoluteFill}>
-            <View style={styles.modalView}>
-              <TouchableOpacity
-                style={styles.closeIconButton}
-                onPress={toggleModal}
-              >
-                <Ionicons name="close" size={24} color="#333" />
-              </TouchableOpacity>
-              <Text style={styles.modalText}>New Proposal</Text>
-              
-            </View>
-          </BlurView>
-        </Modal> */}
-      </GestureHandlerRootView>
-      {/* </OktoProvider> */}
+      </GestureHandlerRootView> */}
     </View>
   );
 }
@@ -283,13 +251,13 @@ const styles = StyleSheet.create({
   },
   Logout: {
     color: "red",
-    fontSize: 16
+    fontSize: 16,
   },
   LogoutBtn: {
     display: "flex",
     direction: "ltr",
     justifyContent: "space-between",
     padding: 16,
-    marginBottom: 32
-  }
+    marginBottom: 32,
+  },
 });

@@ -22,6 +22,7 @@ import {
 } from "@/constants/keys";
 import { Colors } from "@/constants/Colors";
 import VideoUploadComp from "@/components/VideoUploadComp";
+import '../shim.mjs';
 
 const Index = () => {
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
