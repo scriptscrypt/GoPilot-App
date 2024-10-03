@@ -18,12 +18,14 @@ import { BlurView } from "expo-blur";
 import { DrawerActions } from "@react-navigation/native";
 import PolyfillCrypto from "react-native-webview-crypto";
 import Login from "@/components/Screens/Login";
+import useAuth from "@/hooks/useAuth";
 
 export default function Layout() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [shouldOpenModal, setShouldOpenModal] = useState(false);
   const navigation = useNavigation();
   const drawerRef = useRef(null);
+  const { address } = useAuth();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -89,94 +91,99 @@ export default function Layout() {
       }}
     >
       <PolyfillCrypto />
-      <Login />
-      {/* 
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <Drawer
-          drawerContent={(props) => <CustomDrawerContent {...props} />}
-          screenOptions={{
-            headerShown: false,
-            drawerActiveBackgroundColor: "#e6e6e6",
-            drawerActiveTintColor: "#000",
-            drawerInactiveTintColor: "#333",
-          }}
-        >
-          <Drawer.Screen
-            name="index"
-            options={{
-              drawerLabel: "Home",
-              title: "Home",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="home-outline" size={size} color={color} />
-              ),
+      {!address && <Login />}
+      {address && (
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Drawer
+            drawerContent={(props) => <CustomDrawerContent {...props} />}
+            screenOptions={{
+              headerShown: false,
+              drawerActiveBackgroundColor: "#e6e6e6",
+              drawerActiveTintColor: "#000",
+              drawerInactiveTintColor: "#333",
             }}
-          />
-          <Drawer.Screen
-            name="earningsScreen"
-            options={{
-              drawerLabel: "Earnings",
-              title: "Earnings",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="star-outline" size={size} color={color} />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="notificationsScreen"
-            options={{
-              drawerLabel: "Notifications",
-              title: "Notifications",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons
-                  name="notifications-outline"
-                  size={size}
-                  color={color}
-                />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="newVotesScreen"
-            options={{
-              drawerLabel: "Vote",
-              title: "Vote",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="checkbox-outline" size={size} color={color} />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="voteScreen"
-            options={{
-              drawerLabel: "Voting Stats",
-              title: "Vote",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="stats-chart-outline" size={size} color={color} />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="stakeScreen"
-            options={{
-              drawerLabel: "Stake $GO",
-              title: "Stake $GO",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="cash-outline" size={size} color={color} />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="accountSettingsScreen"
-            options={{
-              drawerLabel: "Account Settings",
-              title: "Account Settings",
-              drawerIcon: ({ color, size }) => (
-                <Ionicons name="settings-outline" size={size} color={color} />
-              ),
-            }}
-          />
-        </Drawer>
-      </GestureHandlerRootView> */}
+          >
+            <Drawer.Screen
+              name="index"
+              options={{
+                drawerLabel: "Home",
+                title: "Home",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="home-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="earningsScreen"
+              options={{
+                drawerLabel: "Earnings",
+                title: "Earnings",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="star-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="notificationsScreen"
+              options={{
+                drawerLabel: "Notifications",
+                title: "Notifications",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons
+                    name="notifications-outline"
+                    size={size}
+                    color={color}
+                  />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="newVotesScreen"
+              options={{
+                drawerLabel: "Vote",
+                title: "Vote",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="checkbox-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="voteScreen"
+              options={{
+                drawerLabel: "Voting Stats",
+                title: "Vote",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons
+                    name="stats-chart-outline"
+                    size={size}
+                    color={color}
+                  />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="stakeScreen"
+              options={{
+                drawerLabel: "Stake $GO",
+                title: "Stake $GO",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="cash-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="accountSettingsScreen"
+              options={{
+                drawerLabel: "Account Settings",
+                title: "Account Settings",
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="settings-outline" size={size} color={color} />
+                ),
+              }}
+            />
+          </Drawer>
+        </GestureHandlerRootView>
+      )}
     </View>
   );
 }

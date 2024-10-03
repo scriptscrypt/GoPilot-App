@@ -21,8 +21,7 @@ import {
   RECLAIM_PROVIDER_ID,
 } from "@/constants/keys";
 import { Colors } from "@/constants/Colors";
-import VideoUploadComp from "@/components/VideoUploadComp";
-
+import MediaUploadV2 from "@/components/MediaUploadV2";
 
 const Index = () => {
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
@@ -61,7 +60,7 @@ const Index = () => {
         //   <Button title="Upload Video" onPress={handleUploadVideo} />
         //   {videoUploaded && <Text style={styles.successText}>Video uploaded successfully!</Text>}
         // </View>
-        <VideoUploadComp />
+        <MediaUploadV2 />
       );
     } else {
       return (
@@ -87,7 +86,10 @@ const Index = () => {
       <ReclaimSDK />
 
       {/* Floating Button */}
-      <TouchableOpacity style={styles.floatingButton} onPress={toggleBottomSheet}>
+      <TouchableOpacity
+        style={styles.floatingButton}
+        onPress={toggleBottomSheet}
+      >
         <Ionicons name="add" size={24} color="white" />
       </TouchableOpacity>
 
@@ -106,7 +108,11 @@ const Index = () => {
               <Button
                 title={currentStep === 1 ? "Next" : "Submit"}
                 onPress={handleNext}
-                disabled={currentStep === 1 ? !videoUploaded : additionalDetails.trim() === ""}
+                disabled={
+                  currentStep === 1
+                    ? !videoUploaded
+                    : additionalDetails.trim() === ""
+                }
               />
             </View>
           </View>
@@ -149,57 +155,57 @@ export const ReclaimSDK = (): any => {
       },
     });
   }
-
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   floatingButton: {
-    position: 'absolute',
+    position: "absolute",
     right: 20,
     bottom: 20,
     backgroundColor: Colors.brand.primary,
     borderRadius: 30,
     width: 60,
     height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     elevation: 5,
   },
   modalContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: "flex-end",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   bottomSheet: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 20,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    height:400
   },
   bottomSheetContent: {
     marginBottom: 20,
   },
   bottomSheetTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
   },
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   successText: {
-    color: 'green',
+    color: "green",
     marginTop: 10,
   },
 });

@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { CapsuleMobile, Environment } from "@usecapsule/react-native-wallet";
 import { CAPSULE_API_KEY } from "@/constants/keys";
 import { webcrypto } from "crypto";
@@ -13,6 +19,10 @@ const Login = () => {
 
   const capsule = new CapsuleMobile(Environment.BETA, CAPSULE_API_KEY);
   console.log("CapsuleMobile instance created");
+
+  useEffect(() => {
+    capsule.init();
+  });
 
   const handleCreateUser = async (): Promise<void> => {
     console.log("handleCreateUser called with email:", email);
@@ -30,7 +40,9 @@ const Login = () => {
   const handleVerifyEmail = async (): Promise<void> => {
     console.log("handleVerifyEmail called with code:", verificationCode);
     try {
-      const biometricsId = await capsule.verifyEmailBiometricsId(verificationCode);
+      const biometricsId = await capsule.verifyEmailBiometricsId(
+        verificationCode
+      );
       console.log("Email verified successfully, biometricsId:", biometricsId);
       setMessage("Email verified successfully");
       await handleRegisterPasskeyAndCreateWallet(email, biometricsId);
@@ -44,13 +56,22 @@ const Login = () => {
     email: string,
     biometricsId: string
   ): Promise<void> => {
-    console.log("handleRegisterPasskeyAndCreateWallet called", { email, biometricsId });
+    console.log("handleRegisterPasskeyAndCreateWallet called", {
+      email,
+      biometricsId,
+    });
     try {
-      await capsule.registerPasskey(email, biometricsId, webcrypto);
+      // await capsule.registerPasskey(email, biometricsId, webcrypto);
+      await capsule.registerPasskey(
+        email,
+        biometricsId,
+        crypto as webcrypto.Crypto
+      );
       console.log("Passkey registered successfully");
       setMessage("Passkey registered successfully");
-      
-      const { wallets, recoverySecret } = await capsule.createWalletPerMissingType(false);
+
+      const { wallets, recoverySecret } =
+        await capsule.createWalletPerMissingType(false);
       console.log("Wallet created:", wallets);
       console.log("Recovery Secret:", recoverySecret);
       setMessage("User wallet created");
@@ -146,29 +167,29 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
   },
   input: {
-    width: '100%',
+    width: "100%",
     height: 40,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
   },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: "blue",
     padding: 10,
     borderRadius: 5,
   },
   buttonText: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
   },
   message: {
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
