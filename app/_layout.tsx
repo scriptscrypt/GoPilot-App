@@ -19,6 +19,8 @@ import { DrawerActions } from "@react-navigation/native";
 import PolyfillCrypto from "react-native-webview-crypto";
 import Login from "@/components/Screens/Login";
 import useAuth from "@/hooks/useAuth";
+import { dynamicClient } from "@/dynamic/client";
+import LoginDynamic from "@/components/Screens/LoginDynamic";
 
 export default function Layout() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -90,8 +92,9 @@ export default function Layout() {
         paddingBottom: insets.bottom,
       }}
     >
+      <dynamicClient.reactNative.WebView />
       <PolyfillCrypto />
-      {!address && <Login />}
+      {!address || (address === "" && <LoginDynamic />)}
       {address && (
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Drawer

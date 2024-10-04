@@ -881,6 +881,64 @@
     ieee754 "^1.2.1"
     react-native-quick-base64 "^2.0.5"
 
+"@dynamic-labs/assert-package-version@4.0.0-alpha.7":
+  version "4.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@dynamic-labs/assert-package-version/-/assert-package-version-4.0.0-alpha.7.tgz#384331338f26561200ff7a61caaff560d0f40c13"
+  integrity sha512-A3GWHRCZXLb97uejFs8vEhRqjEZ2klPNcdCvl89rQwzyhRdFGGTzojjTHe5BO09OufeO7Ce+JZMHdqbgy/cMOg==
+  dependencies:
+    "@dynamic-labs/logger" "4.0.0-alpha.7"
+
+"@dynamic-labs/client@4.0.0-alpha.7", "@dynamic-labs/client@^4.0.0-alpha.7":
+  version "4.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@dynamic-labs/client/-/client-4.0.0-alpha.7.tgz#983daed691ff450805060a568b6ac43d09dcd856"
+  integrity sha512-zXl395YtSzaLYMM3Bvq7/MoKeI+ToMrRzEWM6gpTj/v++0epYwI5/X2UbBrr3+gbEplg94J58x9pUAIbOA+GTw==
+  dependencies:
+    "@dynamic-labs/assert-package-version" "4.0.0-alpha.7"
+    "@dynamic-labs/logger" "4.0.0-alpha.7"
+    "@dynamic-labs/message-transport" "4.0.0-alpha.7"
+    "@dynamic-labs/types" "4.0.0-alpha.7"
+    "@vue/reactivity" "3.4.21"
+    eventemitter3 "5.0.1"
+
+"@dynamic-labs/logger@4.0.0-alpha.7":
+  version "4.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@dynamic-labs/logger/-/logger-4.0.0-alpha.7.tgz#d4ddc3f829e39d3bc34689f69ab7ea5323236d3f"
+  integrity sha512-iecjRrio2f93B5FC6YN4MrJAEHowyLgaHcKLQQ15veJSwoxXV9gx272m1IcrzTN1cIO4Y6mQaoZeOKVD7WIqYQ==
+
+"@dynamic-labs/message-transport@4.0.0-alpha.7":
+  version "4.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@dynamic-labs/message-transport/-/message-transport-4.0.0-alpha.7.tgz#b6b2b35b254616d235c3130cdea2232edb63820b"
+  integrity sha512-GSH9YaTU6myoedYEtBxNTHWvg7Bj+b8MxNV2WokduIMzGz8R+QvoW6zU2c+MwE05YUrUlsCeVCt14lZDApAuLQ==
+  dependencies:
+    "@dynamic-labs/sdk-api-core" "0.0.535"
+    "@dynamic-labs/types" "4.0.0-alpha.7"
+    "@vue/reactivity" "3.4.21"
+    eventemitter3 "5.0.1"
+
+"@dynamic-labs/react-native-extension@^4.0.0-alpha.7":
+  version "4.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@dynamic-labs/react-native-extension/-/react-native-extension-4.0.0-alpha.7.tgz#414e6965f19af08c2597b308638f11b90aa9f19b"
+  integrity sha512-SyAxn9dAD70Mdq7d8CjmFlembu0iWGzN5HHpZgUhr5aDJJ8rpBM3M3V+enlt6ouJsHQMVy+wL8SAFsKDSlS5qA==
+  dependencies:
+    "@dynamic-labs/assert-package-version" "4.0.0-alpha.7"
+    "@dynamic-labs/client" "4.0.0-alpha.7"
+    "@dynamic-labs/logger" "4.0.0-alpha.7"
+    "@dynamic-labs/message-transport" "4.0.0-alpha.7"
+    "@turnkey/react-native-passkey-stamper" "0.2.5"
+
+"@dynamic-labs/sdk-api-core@0.0.535":
+  version "0.0.535"
+  resolved "https://registry.yarnpkg.com/@dynamic-labs/sdk-api-core/-/sdk-api-core-0.0.535.tgz#13efd083d4256c6479f524be38535a84426beaeb"
+  integrity sha512-G2ABKms2cnIKq3RgVa2kcEF750Hhjy18BMbkl9yOtYhXmZ4bWD5hop5Z4LDccIgo+9mLKXmoSOQ9HBwzzDCFqw==
+
+"@dynamic-labs/types@4.0.0-alpha.7":
+  version "4.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@dynamic-labs/types/-/types-4.0.0-alpha.7.tgz#f034b4be93a02e8c4d1fdf1084039d015394edc9"
+  integrity sha512-K4irxpifdS4EeyHUFxh8c1+gV+rLLFa07tZ+BzC1h16yaAK4fW1Bf+obPO1t4esH61wxirMjj6huNreJgFlnNw==
+  dependencies:
+    "@dynamic-labs/assert-package-version" "4.0.0-alpha.7"
+    "@dynamic-labs/sdk-api-core" "0.0.535"
+
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
@@ -1911,12 +1969,19 @@
   dependencies:
     "@noble/hashes" "1.3.2"
 
+"@noble/curves@^1.3.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@noble/curves/-/curves-1.6.0.tgz#be5296ebcd5a1730fccea4786d420f87abfeb40b"
+  integrity sha512-TlaHRXDehJuRNR9TfZDNQ45mMEd5dwUwmicsafcIX4SsNiqnCHKjE/1alYPd/lDRVhxdhUAlv8uEhMCI5zjIJQ==
+  dependencies:
+    "@noble/hashes" "1.5.0"
+
 "@noble/hashes@1.3.2":
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.3.2.tgz#6f26dbc8fbc7205873ce3cee2f690eba0d421b39"
   integrity sha512-MVC8EAQp7MvEcm30KWENFjgR+Mkmf+D189XJTkFIlwohU5hcBbn1ZkKq7KVTi2Hme3PMGF390DaL52beVrIihQ==
 
-"@noble/hashes@^1.4.0":
+"@noble/hashes@1.5.0", "@noble/hashes@^1.4.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.5.0.tgz#abadc5ca20332db2b1b2aa3e496e9af1213570b0"
   integrity sha512-1j6kQFb7QRru7eKN3ZDvRcP13rugwdxZqCjbiAVZfIJwgj2A65UmT4TgARXGlXgnRkORLTDTrO19ZErt7+QXgA==
@@ -2557,6 +2622,48 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
+"@turnkey/api-key-stamper@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@turnkey/api-key-stamper/-/api-key-stamper-0.4.0.tgz#03844adb9d08f4d0463e8d6e8dc9167a662b68e9"
+  integrity sha512-LyIiAXRuSL5UBa/Y95gHuh7j4uHzVMkI2+sHWM4/UWZat3nCoveU66h6SFXwF1BThA0poGgsKjWjsKNCJ89NPg==
+  dependencies:
+    "@noble/curves" "^1.3.0"
+    "@turnkey/encoding" "0.1.0"
+    sha256-uint8array "^0.10.7"
+
+"@turnkey/encoding@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@turnkey/encoding/-/encoding-0.1.0.tgz#85461c3aa11c70882cc2b0853f5db40f576c3ac9"
+  integrity sha512-aLmLrWtvV1k9UyGzuzMpBFdwleCH8VpzXIriusVMrFLiQp+4uHCS9cwrEG1glg3207ewWFDtvgj31qLoJS29pg==
+
+"@turnkey/http@2.10.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@turnkey/http/-/http-2.10.0.tgz#9e8d0dc6279719e3efaf5ae1df7dc9fd5a111ecf"
+  integrity sha512-5I2VwOzxYGxmSy8UOZn8rsV23gmK8v93KqNZ/mjf4GrFQ69q8LCaAFmrH1Zo+/J7eq0/GQdxNqBHfJKLp5iihw==
+  dependencies:
+    "@turnkey/api-key-stamper" "0.4.0"
+    "@turnkey/encoding" "0.1.0"
+    "@turnkey/webauthn-stamper" "0.5.0"
+    cross-fetch "^3.1.5"
+
+"@turnkey/react-native-passkey-stamper@0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@turnkey/react-native-passkey-stamper/-/react-native-passkey-stamper-0.2.5.tgz#3adb7dc244c802c0e7052835363b855665436d8b"
+  integrity sha512-e+NZKjrrVDPXMBA14e7Av1eitq/jExiph01zaSIBpZD+EjiyKumV1KPw09jSIiOOckZriNCQ3u0EUrhS6dNPZg==
+  dependencies:
+    "@turnkey/encoding" "0.1.0"
+    "@turnkey/http" "2.10.0"
+    buffer "^6.0.3"
+    react-native-passkey "^2.1.1"
+    sha256-uint8array "^0.10.7"
+
+"@turnkey/webauthn-stamper@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@turnkey/webauthn-stamper/-/webauthn-stamper-0.5.0.tgz#014b8c20b1732af49dacb04f396edf010d3b7f47"
+  integrity sha512-iUbTUwD4f4ibdLy5PWWb7ITEz4S4VAP9/mNjFhoRY3cKVVTDfmykrVTKjPOIHWzDgAmLtgrLvySIIC9ZBVENBw==
+  dependencies:
+    sha256-uint8array "^0.10.7"
+
 "@types/babel__core@^7.1.14":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.20.5.tgz#3df15f27ba85319caa07ba08d0721889bb39c017"
@@ -2963,6 +3070,18 @@
     buffer "6.0.3"
     cbor-web "8.1.0"
     node-forge "1.3.1"
+
+"@vue/reactivity@3.4.21":
+  version "3.4.21"
+  resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.4.21.tgz#affd3415115b8ebf4927c8d2a0d6a24bccfa9f02"
+  integrity sha512-UhenImdc0L0/4ahGCyEzc/pZNwVgcglGy9HVzJ1Bq2Mm9qXOpP8RyNTjookw/gOCUlXSEtuZ2fUg5nrHcoqJcw==
+  dependencies:
+    "@vue/shared" "3.4.21"
+
+"@vue/shared@3.4.21":
+  version "3.4.21"
+  resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.4.21.tgz#de526a9059d0a599f0b429af7037cd0c3ed7d5a1"
+  integrity sha512-PuJe7vDIi6VYSinuEbUIQgMIRZGgM8e4R+G+/dQTk0X1NEdvgvvgv7m+rfmDH1gZzyA1OjjoWskvHlfRNfQf3g==
 
 "@web3-storage/multipart-parser@^1.0.0":
   version "1.0.0"
@@ -4789,15 +4908,15 @@ escape-html@~1.0.3:
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==
 
+escape-string-regexp@2.0.0, escape-string-regexp@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
+  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
+
 escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==
-
-escape-string-regexp@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
-  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
 
 escape-string-regexp@^4.0.0:
   version "4.0.0"
@@ -4952,6 +5071,11 @@ event-target-shim@^5.0.0, event-target-shim@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
+
+eventemitter3@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-5.0.1.tgz#53f5ffd0a492ac800721bb42c66b841de96423c4"
+  integrity sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==
 
 eventemitter3@^4.0.1:
   version "4.0.7"
@@ -5154,6 +5278,11 @@ expo-router@~3.5.23:
     expo-splash-screen "0.27.5"
     react-native-helmet-async "2.0.4"
     schema-utils "^4.0.1"
+
+expo-secure-store@~13.0.2:
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/expo-secure-store/-/expo-secure-store-13.0.2.tgz#ba8f6076fc38062a28bb2ce5edab9cd28ef88598"
+  integrity sha512-3QYgoneo8p8yeeBPBiAfokNNc2xq6+n8+Ob4fAlErEcf4H7Y72LH+K/dx0nQyWau2ZKZUXBxyyfuHFyVKrEVLg==
 
 expo-splash-screen@0.27.5:
   version "0.27.5"
@@ -8571,6 +8700,11 @@ react-native-modpow@^1.1.1-0:
   resolved "https://registry.yarnpkg.com/react-native-modpow/-/react-native-modpow-1.1.1-0.tgz#b0bc8ee38ed6a503503a3de763cd07b3d5277bd1"
   integrity sha512-CZrUOGq8IAWqdhIMwwOlsR/kGABfmuIgXOkWq0qdmsHBSlkmX7Ge7KUPsrJY3AkXyK1MzibYXFyt0lFPfvF7WQ==
 
+react-native-passkey@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-passkey/-/react-native-passkey-2.1.1.tgz#30a1f4d99e22a209a4cc1e64b37a363c06eac8c3"
+  integrity sha512-/SBlL+8aJOiAAyO4jmRhJAxo1LklMpjQijLyl1jZlt9bKtRnh4Uz94z7AYouBR2anTB+DaEycLIhunG7h8Xbwg==
+
 react-native-quick-base64@^2.0.5, react-native-quick-base64@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/react-native-quick-base64/-/react-native-quick-base64-2.1.2.tgz#062b09b165c1530095fe99b94544c948318dbe99"
@@ -8652,12 +8786,12 @@ react-native-webview-crypto@^0.0.26:
     fast-base64-encode "^1.0.0"
     webview-crypto "^0.1.13"
 
-react-native-webview@^13.12.2:
-  version "13.12.2"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-13.12.2.tgz#b379b28c725632efabb42a2cf8387bd03cf34f33"
-  integrity sha512-OpRcEhf1IEushREax6rrKTeqGrHZ9OmryhZLBLQQU4PwjqVsq55iC8OdYSD61/F628f9rURn9THyxEZjrknpQQ==
+react-native-webview@13.8.6:
+  version "13.8.6"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-13.8.6.tgz#5d4a62cb311d5ef8d910a8e112b3f1f2807bcd18"
+  integrity sha512-jtZ9OgB2AN6rhDwto6dNL3PtOtl/SI4VN93pZEPbMLvRjqHfxiUrilGllL5fKAXq5Ry5FJyfUi82A4Ii8olZ7A==
   dependencies:
-    escape-string-regexp "^4.0.0"
+    escape-string-regexp "2.0.0"
     invariant "2.2.4"
 
 react-native@0.74.5:
@@ -9219,6 +9353,11 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+sha256-uint8array@^0.10.7:
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/sha256-uint8array/-/sha256-uint8array-0.10.7.tgz#c751fc914f4227b26d996980562065fa4eadcf99"
+  integrity sha512-1Q6JQU4tX9NqsDGodej6pkrUVQVNapLZnvkwIhddH/JqzBZF1fSaxSWNY6sziXBE8aEa2twtGkXUrwzGeZCMpQ==
 
 shallow-clone@^3.0.0:
   version "3.0.1"
