@@ -1,6 +1,5 @@
-
-import React, { useCallback, useRef, useState } from "react";
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
+import React, { useCallback, useRef, useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, Modal, StyleSheet, Button } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 import {
@@ -19,14 +18,15 @@ import { DrawerActions } from "@react-navigation/native";
 import PolyfillCrypto from "react-native-webview-crypto";
 import useAuth from "@/hooks/useAuth";
 import { dynamicClient } from "@/dynamic/client";
-import LoginDynamic from "@/components/Screens/LoginDynamic";
+import { useReactiveClient } from "@dynamic-labs/react-hooks";
+// import LoginDynamic from "@/components/Screens/LoginDynamic";
 
 export default function Layout() {
+  const { auth, sdk, wallets } = useReactiveClient(dynamicClient);
   const [isModalVisible, setModalVisible] = useState(false);
   const [shouldOpenModal, setShouldOpenModal] = useState(false);
   const navigation = useNavigation();
   const drawerRef = useRef(null);
-  const { address } = useAuth();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -40,6 +40,12 @@ export default function Layout() {
     // navigation.closeDrawer();
     navigation.dispatch(DrawerActions.closeDrawer());
   };
+
+  const handleProfile = useCallback(() => {
+    dynamicClient.ui.userProfile.show();
+  }, []);
+
+console.log(wallets)
 
   useFocusEffect(
     useCallback(() => {
@@ -73,10 +79,10 @@ export default function Layout() {
           <Text style={styles.buttonText}>New Proposal</Text>
         </TouchableOpacity> */}
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleProfile}>
           <View style={styles.LogoutBtn}>
-            {/* <Ionicons name="log-out" size={24} color={"red"} /> */}
-            <Text style={styles.Logout}>Logout</Text>
+            <Ionicons name="settings-outline" size={24} color="black" />
+            <Text style={styles.Profile}>Profile</Text>
           </View>
         </TouchableOpacity>
       </>
@@ -93,8 +99,8 @@ export default function Layout() {
     >
       <dynamicClient.reactNative.WebView />
       <PolyfillCrypto />
-      {!address || (address === "" && <LoginDynamic />)}
-      {address && (
+      {!wallets.primary &&  <Button onPress={() => dynamicClient.ui.auth.show()} title="Login" />}
+      {wallets.primary && (
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Drawer
             drawerContent={(props) => <CustomDrawerContent {...props} />}
@@ -139,6 +145,7 @@ export default function Layout() {
                 ),
               }}
             />
+            <Button onPress={() => dynamicClient.ui.userProfile.show()} title="Profile" />
             <Drawer.Screen
               name="newVotesScreen"
               options={{
@@ -259,14 +266,15 @@ const styles = StyleSheet.create({
     right: 10,
     padding: 10,
   },
-  Logout: {
-    color: "red",
+  Profile: {
+    color: "black",
     fontSize: 16,
+    marginLeft: 10,
   },
   LogoutBtn: {
-    display: "flex",
-    direction: "ltr",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
     padding: 16,
     marginBottom: 32,
   },
