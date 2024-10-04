@@ -1,6 +1,12 @@
-import "../shim.mjs";
-import React, { useCallback, useRef, useState } from "react";
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
+import React, { useCallback, useRef, useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  StyleSheet,
+  Button,
+} from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 import {
@@ -17,15 +23,17 @@ import { OKTO_CLIENT_API } from "@/constants/keys";
 import { BlurView } from "expo-blur";
 import { DrawerActions } from "@react-navigation/native";
 import PolyfillCrypto from "react-native-webview-crypto";
-import Login from "@/components/Screens/Login";
 import useAuth from "@/hooks/useAuth";
+import { dynamicClient } from "@/dynamic/client";
+import { useReactiveClient } from "@dynamic-labs/react-hooks";
+// import LoginDynamic from "@/components/Screens/LoginDynamic";
 
 export default function Layout() {
+  const { auth, sdk, wallets } = useReactiveClient(dynamicClient);
   const [isModalVisible, setModalVisible] = useState(false);
   const [shouldOpenModal, setShouldOpenModal] = useState(false);
   const navigation = useNavigation();
   const drawerRef = useRef(null);
-  const { address } = useAuth();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -39,6 +47,12 @@ export default function Layout() {
     // navigation.closeDrawer();
     navigation.dispatch(DrawerActions.closeDrawer());
   };
+
+  const handleProfile = useCallback(() => {
+    dynamicClient.ui.userProfile.show();
+  }, []);
+
+  console.log(wallets);
 
   useFocusEffect(
     useCallback(() => {
@@ -71,13 +85,6 @@ export default function Layout() {
         >
           <Text style={styles.buttonText}>New Proposal</Text>
         </TouchableOpacity> */}
-
-        <TouchableOpacity>
-          <View style={styles.LogoutBtn}>
-            {/* <Ionicons name="log-out" size={24} color={"red"} /> */}
-            <Text style={styles.Logout}>Logout</Text>
-          </View>
-        </TouchableOpacity>
       </>
     );
   };
@@ -90,9 +97,12 @@ export default function Layout() {
         paddingBottom: insets.bottom,
       }}
     >
+      <dynamicClient.reactNative.WebView />
       <PolyfillCrypto />
-      {!address && <Login />}
-      {address && (
+      {!wallets.primary && (
+        <Button onPress={() => dynamicClient.ui.auth.show()} title="Login" />
+      )}
+      {wallets.primary && (
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Drawer
             drawerContent={(props) => <CustomDrawerContent {...props} />}
@@ -137,6 +147,10 @@ export default function Layout() {
                 ),
               }}
             />
+            <Button
+              onPress={() => dynamicClient.ui.userProfile.show()}
+              title="Profile"
+            />
             <Drawer.Screen
               name="newVotesScreen"
               options={{
@@ -171,7 +185,7 @@ export default function Layout() {
                 ),
               }}
             />
-            <Drawer.Screen
+            {/* <Drawer.Screen
               name="accountSettingsScreen"
               options={{
                 drawerLabel: "Account Settings",
@@ -180,7 +194,7 @@ export default function Layout() {
                   <Ionicons name="settings-outline" size={size} color={color} />
                 ),
               }}
-            />
+            /> */}
           </Drawer>
         </GestureHandlerRootView>
       )}
@@ -257,14 +271,15 @@ const styles = StyleSheet.create({
     right: 10,
     padding: 10,
   },
-  Logout: {
-    color: "red",
+  Profile: {
+    color: "black",
     fontSize: 16,
+    marginLeft: 10,
   },
   LogoutBtn: {
-    display: "flex",
-    direction: "ltr",
-    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
     padding: 16,
     marginBottom: 32,
   },
