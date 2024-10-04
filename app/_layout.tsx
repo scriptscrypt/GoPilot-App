@@ -1,4 +1,4 @@
-import "../shim.mjs";
+
 import React, { useCallback, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -17,7 +17,6 @@ import { OKTO_CLIENT_API } from "@/constants/keys";
 import { BlurView } from "expo-blur";
 import { DrawerActions } from "@react-navigation/native";
 import PolyfillCrypto from "react-native-webview-crypto";
-import Login from "@/components/Screens/Login";
 import useAuth from "@/hooks/useAuth";
 import { dynamicClient } from "@/dynamic/client";
 import LoginDynamic from "@/components/Screens/LoginDynamic";
