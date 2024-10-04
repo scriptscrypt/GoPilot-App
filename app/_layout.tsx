@@ -1,5 +1,12 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, Modal, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  StyleSheet,
+  Button,
+} from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 import {
@@ -45,7 +52,7 @@ export default function Layout() {
     dynamicClient.ui.userProfile.show();
   }, []);
 
-console.log(wallets)
+  console.log(wallets);
 
   useFocusEffect(
     useCallback(() => {
@@ -78,13 +85,6 @@ console.log(wallets)
         >
           <Text style={styles.buttonText}>New Proposal</Text>
         </TouchableOpacity> */}
-
-        <TouchableOpacity onPress={handleProfile}>
-          <View style={styles.LogoutBtn}>
-            <Ionicons name="settings-outline" size={24} color="black" />
-            <Text style={styles.Profile}>Profile</Text>
-          </View>
-        </TouchableOpacity>
       </>
     );
   };
@@ -99,7 +99,9 @@ console.log(wallets)
     >
       <dynamicClient.reactNative.WebView />
       <PolyfillCrypto />
-      {!wallets.primary &&  <Button onPress={() => dynamicClient.ui.auth.show()} title="Login" />}
+      {!wallets.primary && (
+        <Button onPress={() => dynamicClient.ui.auth.show()} title="Login" />
+      )}
       {wallets.primary && (
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Drawer
@@ -145,7 +147,10 @@ console.log(wallets)
                 ),
               }}
             />
-            <Button onPress={() => dynamicClient.ui.userProfile.show()} title="Profile" />
+            <Button
+              onPress={() => dynamicClient.ui.userProfile.show()}
+              title="Profile"
+            />
             <Drawer.Screen
               name="newVotesScreen"
               options={{
@@ -180,7 +185,7 @@ console.log(wallets)
                 ),
               }}
             />
-            <Drawer.Screen
+            {/* <Drawer.Screen
               name="accountSettingsScreen"
               options={{
                 drawerLabel: "Account Settings",
@@ -189,7 +194,7 @@ console.log(wallets)
                   <Ionicons name="settings-outline" size={size} color={color} />
                 ),
               }}
-            />
+            /> */}
           </Drawer>
         </GestureHandlerRootView>
       )}
@@ -272,9 +277,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   LogoutBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
     padding: 16,
     marginBottom: 32,
   },
