@@ -1,15 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import SolanaGovernanceComponent from "@/components/Governance";
 
-const notificationsScreen = () => {
+const governance = () => {
   return (
     <View style={styles.container}>
-      <Text>notificationsScreen</Text>
+      {/* <Text>Governance</Text> */}
+      <SolanaGovernanceComponent />
     </View>
   );
 };
 
-export default notificationsScreen;
+export default governance;
 
 const styles = StyleSheet.create({
   container: {

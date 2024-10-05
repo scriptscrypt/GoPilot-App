@@ -67,7 +67,7 @@ const VoteScreen = () => {
 
           <View style={styles.videoContainer}>
             <Video
-              source={{ uri: 'https://ik.imagekit.io/quackmagic/nimmatoken/FigmaBlinks.mp4?updatedAt=1727678605375' }}
+              source={{ uri: 'https://ik.imagekit.io/quackmagic/nimmatoken/Driver.mp4?updatedAt=1728123124536' }}
               style={styles.video}
               useNativeControls
               resizeMode={ResizeMode.CONTAIN}

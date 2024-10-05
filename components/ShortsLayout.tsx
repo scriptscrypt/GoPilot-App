@@ -112,7 +112,7 @@ const ShortsLayout = () => {
       description:
         "To avoid frequent cancellations, this proposal proposes to increase the cancellation fees to Rs.30 if a user cancels it for more than twice in a day",
       videoUri:
-        "https://ik.imagekit.io/quackmagic/nimmatoken/FigmaBlinks.mp4?updatedAt=1727678605375",
+        "https://ik.imagekit.io/quackmagic/nimmatoken/Driver.mp4?updatedAt=1728123124536",
       likes: "10K",
       comments: "1.2K",
     },
