@@ -1,3 +1,9 @@
+import { Buffer } from "buffer";
+import "react-native-get-random-values";
+
+global.TextEncoder = require("text-encoding").TextEncoder;
+global.Buffer = Buffer;
+
 import { dynamicClient } from "@/dynamic/client";
 import { useReactiveClient } from "@dynamic-labs/react-hooks";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,7 +21,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

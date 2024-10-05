@@ -7,5 +7,14 @@ export const dynamicClient = createClient({
   // Optional:
   appLogoUrl: "https://demo.dynamic.xyz/favicon-32x32.png",
   appName: "GoPilot APP",
-  }).extend(SolanaExtension());
+  // }).extend(SolanaExtension());
+}).extend(ReactNativeExtension());
+
+// export const dynamicClientRN = createClient({
+//   environmentId: "329c33c2-f35f-428c-89b8-32c4c36c2cd6",
+//   // Optional:
+//   appLogoUrl: "https://demo.dynamic.xyz/favicon-32x32.png",
+//   appName: "GoPilot APP",
+//   // }).extend(SolanaExtension());
 // }).extend(ReactNativeExtension());
+
