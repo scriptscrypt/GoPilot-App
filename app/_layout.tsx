@@ -1,32 +1,25 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Modal,
-  StyleSheet,
-  Button,
-  Image,
-} from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Drawer } from "expo-router/drawer";
+import { dynamicClient } from "@/dynamic/client";
+import { useReactiveClient } from "@dynamic-labs/react-hooks";
+import { Ionicons } from "@expo/vector-icons";
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Topbar from "@/components/Topbar";
-import { useFocusEffect } from "@react-navigation/native";
+import { DrawerActions, useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
-import { BuildType, OktoProvider } from "okto-sdk-react-native";
-import { OKTO_CLIENT_API } from "@/constants/keys";
-import { BlurView } from "expo-blur";
-import { DrawerActions } from "@react-navigation/native";
+import { Drawer } from "expo-router/drawer";
+import React, { useCallback, useRef, useState } from "react";
+import {
+  Button,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import PolyfillCrypto from "react-native-webview-crypto";
-import useAuth from "@/hooks/useAuth";
-import { dynamicClient } from "@/dynamic/client";
-import { useReactiveClient } from "@dynamic-labs/react-hooks";
 // import LogoImg from "../assets/logos/GoPilotToken_BG.png";
 import { Colors } from "@/constants/Colors";
 
@@ -100,7 +93,7 @@ export default function Layout() {
       }}
     >
       <dynamicClient.reactNative.WebView />
-      <PolyfillCrypto />
+      {/* <PolyfillCrypto /> */}
       {!wallets.primary && (
         <View style={styles.LoginContainer}>
           <Image
@@ -328,6 +321,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: Colors.brand.secondary,
     marginBottom: 0,
-    paddingBottom:0,
+    paddingBottom: 0,
   },
 });

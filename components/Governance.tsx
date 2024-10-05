@@ -17,6 +17,7 @@ import {
 } from "@solana/web3.js";
 import * as borsh from "borsh";
 import { Buffer } from "buffer";
+import Topbar from "./Topbar";
 
 // Define the program ID (replace with your actual program ID)
 const PROGRAM_ID = new PublicKey(
@@ -104,9 +105,7 @@ const SolanaGovernanceComponent: React.FC = () => {
     }
 
     try {
-      // @ts-ignore
       const connection = dynamicClient?.solana?.getConnection();
-      // @ts-ignore
       const signer = dynamicClient?.solana?.getSigner({ wallet });
 
       console.log(signer);
@@ -138,6 +137,7 @@ const SolanaGovernanceComponent: React.FC = () => {
     }
 
     try {
+      setStatus("Initializing Governance");
       const [governanceAccount] = await PublicKey.findProgramAddress(
         [Buffer.from("governance")],
         PROGRAM_ID
@@ -280,7 +280,11 @@ const SolanaGovernanceComponent: React.FC = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Solana Governance</Text>
+      {/* <Topbar balance={11111} /> */}
+      <Text style={styles.title}>Governance Functions</Text>
+      <Text style={styles.sectionTitle}>
+        Dev - 8u1GgwJgRhmk1dp9v1LiNcFYCYh8BvAAb7KFvdcTm6Ra
+      </Text>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Initialize Governance</Text>
@@ -357,7 +361,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: "bold",
     marginBottom: 20,
   },
@@ -365,7 +369,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
     marginBottom: 10,
   },
@@ -380,6 +384,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 10,
+    borderRadius: 32,
   },
   status: {
     marginTop: 20,
