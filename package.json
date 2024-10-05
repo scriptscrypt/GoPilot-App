@@ -26,6 +26,7 @@
     "@react-navigation/drawer": "^6.7.2",
     "@react-navigation/native": "^6.1.18",
     "@reclaimprotocol/reactnative-sdk": "^1.1.6",
+    "@solana/web3.js": "^1.95.3",
     "@usecapsule/react-native-passkey": "^2.2.0",
     "@usecapsule/react-native-wallet": "^1.6.1",
     "axios": "^1.7.7",

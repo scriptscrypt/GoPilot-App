@@ -6,6 +6,7 @@ import {
   Modal,
   StyleSheet,
   Button,
+  Image,
 } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
@@ -26,7 +27,8 @@ import PolyfillCrypto from "react-native-webview-crypto";
 import useAuth from "@/hooks/useAuth";
 import { dynamicClient } from "@/dynamic/client";
 import { useReactiveClient } from "@dynamic-labs/react-hooks";
-// import LoginDynamic from "@/components/Screens/LoginDynamic";
+// import LogoImg from "../assets/logos/GoPilotToken_BG.png";
+import { Colors } from "@/constants/Colors";
 
 export default function Layout() {
   const { auth, sdk, wallets } = useReactiveClient(dynamicClient);
@@ -100,7 +102,20 @@ export default function Layout() {
       <dynamicClient.reactNative.WebView />
       <PolyfillCrypto />
       {!wallets.primary && (
-        <Button onPress={() => dynamicClient.ui.auth.show()} title="Login" />
+        <View style={styles.LoginContainer}>
+          <Image
+            style={styles.logo}
+            source={require("@/assets/logos/LoginLogo.png")}
+          />
+          <Text style={styles.HeaderLoginTxt}>Get started with $GO</Text>
+          {/* <Text>The Governance framework for modern mobility</Text> */}
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() => dynamicClient.ui.auth.show()}
+          >
+            <Text style={styles.loginButtonText}>Login</Text>
+          </TouchableOpacity>
+        </View>
       )}
       {wallets.primary && (
         <GestureHandlerRootView style={{ flex: 1 }}>
@@ -185,7 +200,7 @@ export default function Layout() {
                 ),
               }}
             />
-            {/* <Drawer.Screen
+            <Drawer.Screen
               name="accountSettingsScreen"
               options={{
                 drawerLabel: "Account Settings",
@@ -194,7 +209,7 @@ export default function Layout() {
                   <Ionicons name="settings-outline" size={size} color={color} />
                 ),
               }}
-            /> */}
+            />
           </Drawer>
         </GestureHandlerRootView>
       )}
@@ -282,5 +297,37 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     padding: 16,
     marginBottom: 32,
+  },
+  LoginContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // padding: 16,
+    gap: 24,
+  },
+  loginButton: {
+    backgroundColor: Colors.brand.primary,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    width: "50%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  loginButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  logo: {
+    width: "100%",
+    height: 200,
+  },
+  HeaderLoginTxt: {
+    fontSize: 24,
+    color: Colors.brand.secondary,
+    marginBottom: 0,
+    paddingBottom:0,
   },
 });
