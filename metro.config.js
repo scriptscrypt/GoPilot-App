@@ -32,6 +32,16 @@ const config = {
   resolver: {
     assetExts: assetExts.filter(ext => ext !== 'svg'),
     sourceExts: [...sourceExts, 'svg'],
+    resolveRequest : (context, moduleName, platform) => {
+      if (moduleName === 'crypto') {
+        // when importing crypto, resolve to react-native-quick-crypto
+        return context.resolveRequest(
+          context,
+          'react-native-get-random-values',
+          platform,
+        );
+      }
+    },
   },
 };
 

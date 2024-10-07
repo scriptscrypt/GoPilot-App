@@ -1,8 +1,8 @@
-import { Buffer } from "buffer";
-import "react-native-get-random-values";
+// import { Buffer } from "buffer";
+// import "react-native-get-random-values";
 
-global.TextEncoder = require("text-encoding").TextEncoder;
-global.Buffer = Buffer;
+// global.TextEncoder = require("text-encoding").TextEncoder;
+// global.Buffer = Buffer;
 
 import { dynamicClient } from "@/dynamic/client";
 import { useReactiveClient } from "@dynamic-labs/react-hooks";
