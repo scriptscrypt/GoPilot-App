@@ -7,5 +7,6 @@ export const dynamicClient = createClient({
   // Optional:
   appLogoUrl: "https://demo.dynamic.xyz/favicon-32x32.png",
   appName: "GoPilot APP",
-  }).extend(SolanaExtension());
-// }).extend(ReactNativeExtension());
+  // }).extend(SolanaExtension());
+}).extend(ReactNativeExtension());
+// 
