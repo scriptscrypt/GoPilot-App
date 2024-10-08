@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# GoPilot
 
-## Get started
+The Governance Framework for urban transport
 
-1. Install dependencies
+![Demo Image](https://ik.imagekit.io/scriptscrypt/GoPilot%20-%20header.png?updatedAt=1728392582708)
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+| Tech | Link |
+| ----------------- | ----------------- |
+| Anchor Rust | https://www.anchor-lang.com
+| SolPG | https://beta.solpg.io
+| Expo| https://expo.dev
+| React Native | https://reactnative.dev
+| Dynamic SDK| https://dynamic.xyz
+| Reclaim Protocol SDK| https://www.reclaimprotocol.org
 
-   ```bash
-    npx expo start
-   ```
+## Local Development 
 
-In the output, you'll find options to open the app in a
+Clone the [repository](https://github.com/scriptscrypt/GoPilot-App/)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Install Nodejs Runtime (If not installed) - https://nodejs.org/en/download
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Install all the dependencies 
+`yarn`
 
-## Get a fresh project
+Run the Development server
 
-When you're ready, run:
+If you're using Metro (make sure to have Metro App on the Emulator / Physical Device) : 
+`yarn dev`
 
-```bash
-npm run reset-project
-```
+If you're using Android : 
+`yarn android`
+## Environment Variables
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+To run this project, you will need to add the following environment variables to your .env file
 
-## Learn more
+NEXT_PUBLIC_MONGODB_URI=Your Mongo DB URI
+NEXT_PUBLIC_TELEGRAM_BOT_TOKEN= Your Telegram Bot Token
+NEXT_PUBLIC_TELEGRAM_CHAT_ID=-100XXXXXX
+NEXT_PUBLIC_ENVIROMENT=Your environment - development || production
 
-To learn more about developing your project with Expo, look at the following resources:
+All the configs for it will be available in `src/lib/envConfig/envConfig.ts`
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
