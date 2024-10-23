@@ -32,14 +32,5 @@ If you're using Metro (make sure to have Metro App on the Emulator / Physical De
 
 If you're using Android : 
 `yarn android`
-## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
-
-NEXT_PUBLIC_MONGODB_URI=Your Mongo DB URI
-NEXT_PUBLIC_TELEGRAM_BOT_TOKEN= Your Telegram Bot Token
-NEXT_PUBLIC_TELEGRAM_CHAT_ID=-100XXXXXX
-NEXT_PUBLIC_ENVIROMENT=Your environment - development || production
-
-All the configs for it will be available in `src/lib/envConfig/envConfig.ts`
 
